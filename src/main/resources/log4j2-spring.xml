@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<Configuration status="INFO" monitorInterval="30">
+    <!--
+        status: log4j2 자체의 내부 로깅 레벨 (설정 문제 디버깅용)
+        monitorInterval: 설정 파일 변경 감지 주기(초 단위), 30초마다 감시
+    -->
+
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="LOG_PATH">${sys:catalina.base}/logs</Property>
+
+        <!-- SMTP 관련 설정 -->
+        <Property name="SMTP_HOST">${sys:LOGGING_SMTP_HOST}</Property>
+        <Property name="SMTP_PORT">${sys:LOGGING_SMTP_PORT}</Property>
+        <Property name="SMTP_FROM">${sys:LOGGING_SMTP_FROM}</Property>
+        <Property name="SMTP_TO">${sys:LOGGING_SMTP_TO}</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 콘솔 출력용 Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- 파일 출력용 Appender (하루 단위로 로그 파일 롤링, gzip 압축) -->
+        <RollingFile name="File"
+                     fileName="${LOG_PATH}/kkpc_p17.log"
+                     filePattern="${LOG_PATH}/kkpc_p17-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- 매일 자정 기준으로 롤링 -->
+            </Policies>
+            <DefaultRolloverStrategy max="100"/> <!-- 최대 100일 보관 -->
+        </RollingFile>
+
+        <!-- 에러 발생 시 메일 발송용 Appender -->
+        <SMTP name="Email" subject="[ALERT] Error in CRETOP RPA"
+              to="${SMTP_TO}"
+              from="${SMTP_FROM}"
+              smtpHost="${SMTP_HOST}"
+              smtpPort="${SMTP_PORT}"
+              bufferSize="512"
+              smtpProtocol="smtp">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+                <!-- ERROR 레벨 이상의 로그만 이메일로 발송 -->
+            </Filters>
+        </SMTP>
+
+        <!-- Failover Appender -->
+        <Failover name="FailoverEmail" primary="Email">
+            <Failovers>
+                <AppenderRef ref="Console"/>
+            </Failovers>
+        </Failover>
+    </Appenders>
+
+    <Loggers>
+        <!--
+            루트 Logger: 전체 기본 로그 레벨을 info로 설정
+            Console, File, Email Appender 모두 연결
+        -->
+        <Root level="info">
+            <AppenderRef ref="Console">
+                <Filters>
+                    <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+                </Filters>
+            </AppenderRef>
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="FailoverEmail"/>
+        </Root>
+
+        <!--
+            (선택사항) 특정 패키지(com.example 등)에 대해 별도 로그 레벨 설정 가능
+            개발환경에서는 debug 레벨로 세부 로그를 보고 싶을 때 사용
+        -->
+        <!--
+                <Logger name="com.example" level="debug" additivity="false">
+                    <AppenderRef ref="Console"/>
+                    <AppenderRef ref="File"/>
+                </Logger>
+        -->
+
+    </Loggers>
+</Configuration>

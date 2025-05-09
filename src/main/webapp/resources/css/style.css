@@ -1,0 +1,24 @@
+@import url('./fonts.css');
+
+body {
+    font-family: 'NotoSans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'NanumSquare', sans-serif;
+}
+
+/* header 관련 */
+.bi {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: -0.125em;
+    fill: currentColor;
+}
+.bi.logo {
+    width: 1.5em;
+    height: 1.5em;
+}
+.dropdown-menu .active .bi {
+    display: block !important;
+}

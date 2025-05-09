@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'NanumSquare';
+    src: url('../fonts/nanumsquare/NanumSquareR.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    src: url('../fonts/nanumsquare/NanumSquareB.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    src: url('../fonts/nanumsquare/NanumSquareL.ttf') format('ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url('../fonts/notosans/NotoSansKR-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url('../fonts/notosans/NotoSansKR-Bold.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url('../fonts/notosans/NotoSansKR-Light.ttf') format('ttf');
+    font-weight: 300;
+    font-style: normal;
+}

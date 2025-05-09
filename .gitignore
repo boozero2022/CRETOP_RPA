@@ -1,0 +1,85 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# ======================
+# OS / 환경 파일
+# ======================
+.DS_Store         # macOS
+Thumbs.db         # Windows
+*.swp             # vim
+*.swo
+
+# ======================
+# 민감 정보 / 환경 파일
+# ======================
+*.env
+.env
+application.properties
+application.yml
+application-*.yml
+application-*.properties
+
+# 인증서 및 보안 파일
+*.jks
+*.p12
+*.key
+*.pem
+*.crt
+*.cer
+
+# ======================
+# 테스트 결과 / 보고서
+# ======================
+test-output/
+surefire-reports/
+
+# ======================
+# 로그
+# ======================
+logs/
+*.log
+
+# Gradle
+.gradle/
+.gradle-cache/
+**/build/
+
+#smarttomcat
+.smarttomcat/
