@@ -73,7 +73,7 @@
 
                 <!-- 업체 요약표 섹션 -->
                 <section id="summarySection" class="mb-4 form-check">
-                    <input type="checkbox" class="form-check-input" id="summaryCheck">
+                    <input type="checkbox" class="form-check-input" id="summaryCheck" name="includesSummary">
                     <label class="form-check-label" for="summaryCheck">📊 업체 요약표 포함</label>
                 </section>
         
