@@ -13,12 +13,14 @@ import java.util.List;
 public class UserInput {
     private List<String> businessNumbers;
     private List<String> emailAddresses;
+    private boolean includesSummary;
 
     @Override
     public String toString() {
         return "UserInput{" +
                 "businessNumbers=" + businessNumbers +
                 ", emailAddresses=" + emailAddresses +
+                ", includesSummary=" + includesSummary +
                 '}';
     }
 }

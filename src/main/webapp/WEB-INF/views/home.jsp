@@ -70,6 +70,12 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- 업체 요약표 섹션 -->
+                <section id="summarySection" class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="summaryCheck" name="includesSummary">
+                    <label class="form-check-label" for="summaryCheck">📊 업체 요약표 포함</label>
+                </section>
         
                 <button type="submit" class="btn btn-primary w-100 opacity-75">실행</button>
             </form>
@@ -88,9 +94,14 @@
                     <h1 class="fs-6">🏢 사업자 등록번호</h1>
                     <ul id="businessNumberList" class="mb-3"></ul>
                     <hr>
+                    
                     <h1 class="fs-6">📧 이메일 주소</h1>
                     <ul id="emailList" class="mb-3"></ul>
-                
+                    <hr>
+
+                    <h1 class="fs-6">📊 업체 요약표</h1>
+                    <ul id="summaryInfo" class="mb-3"></ul>
+
                     <div class="modal-footer">
                         <button type="button" id="confirmSubmitBtn" class="btn btn-primary opacity-75 w-100">확인</button>
                     </div>
@@ -161,6 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
             li.textContent = input.value.trim();
             emailList.appendChild(li);
         });
+
+        const summaryCheck = document.getElementById('summaryCheck');
+        const summaryInfo = document.getElementById('summaryInfo');
+        summaryInfo.innerHTML = '';
+
+        const li = document.createElement('li');
+        li.textContent = summaryCheck.checked ? '포함' : '미포함';
+        summaryInfo.appendChild(li);
 
         // 모달 표시
         confirmModal.show();
