@@ -17,7 +17,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class RequestQueueManager {
     
     private static final int MAX_RETRY_COUNT = 3;
-    private static final long RETRY_DELAY_MILLIS = 3 * 60 * 1000;    // 3분
+    private static final long RETRY_DELAY_MILLIS = 7 * 60 * 1000;    // 7분
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RequestQueueManager.class);
 
@@ -76,7 +76,7 @@ public class RequestQueueManager {
     }
 
     private void handleMultiUserLogin(RequestTask task) {
-        log.info("MultiUserLoginException 발생 - 3분간 대기 후 재시도");
+        log.info("MultiUserLoginException 발생 - {} ms간 대기 후 재시도", RETRY_DELAY_MILLIS);
 
         if (freeze()) return;
 
